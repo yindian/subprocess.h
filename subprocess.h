@@ -565,7 +565,13 @@ int subprocess_create(const char *const commandLine[], int options,
 
   out_process->hProcess = processInfo.hProcess;
 
+#if 0
   out_process->hStdInput = startInfo.hStdInput;
+#else
+  if (0 != startInfo.hStdInput) {
+    CloseHandle(startInfo.hStdInput);
+  }
+#endif
 
   // We don't need the handle of the primary thread in the called process.
   CloseHandle(processInfo.hThread);
