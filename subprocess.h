@@ -301,7 +301,9 @@ SUBPROCESS_DLLIMPORT subprocess_intptr_t __cdecl _get_osfhandle(int);
 #if defined(_MSC_VER)
 void *__cdecl _alloca(subprocess_size_t);
 #elif defined(__GNUC__)
+#ifndef _alloca
 #define _alloca(_x) __builtin_alloca(_x)
+#endif
 #else
 #include <stdlib.h>
 #endif
